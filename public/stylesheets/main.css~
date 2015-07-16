@@ -1,0 +1,138 @@
+* {
+	box-sizing: border-box;
+}
+
+h2 {
+	font-size: 28pt;
+	color: black;
+}
+
+body, h5{
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #6e6e6e;
+    font-size: 14pt;
+}
+
+hr {
+	border: 1px solid #D0D0D0;
+	clear: both;
+	padding: 0px;
+	display: block;
+	height: 1px;
+}
+
+footer small {
+	color: #9b9b9b;
+	text-align: center;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul {
+  display:table;
+  margin:0 auto;
+  text-align: left;
+}
+
+#about {
+  font-size: 12pt;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+#jumbo {
+	margin-top: 0px;
+	margin-bottom: -31px;
+	border-radius: 0px;
+	padding: 0px;
+	background: url("https://0.s3.envato.com/files/134781432/DNA%20590x332.jpg") center center;
+	background-size: cover;
+	overflow: hidden;
+}
+
+#description {
+	margin: 25px;
+	padding: 45px;
+	font-size: 11pt;
+}
+
+#content {
+	background-size: cover;
+	overflow: hidden;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#buttons {
+	background-color: #4b4b4b;
+}
+
+#btn-txt {
+	font-size: 10pt;
+	color: white;
+}
+
+#btn-txt:hover {
+	border-radius: 5px;
+	border-color: #4b4b4b;
+	background-color: #000000
+}
+
+.chosen {
+  font-size: 10pt;
+}
+
+.current {
+  border-radius: 5px;
+	border-color: #4b4b4b;
+	background-color: #000000
+}
+
+#footer {
+	font-size: 9pt;
+}
+
+#lab-logo {
+	padding-top: 6px;
+	padding-bottom: 32px;
+}
+
+#title {
+  text-decoration:none;
+}
+
+#tool-about{
+  margin: 10px;
+}
+
+#vandy-logo {
+	padding-top: 5px;
+}
+
+.indexwell {
+	background-color: black;
+	border-radius: 70px;
+}
+
+#zhanglab{
+	color: black;
+}

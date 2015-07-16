@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+        <script type="text/javascript" src="/javascripts/main.js"></script>
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    </head>
+    <body>
+    	<center>
+    		<% include templates/header.ejs %>
+    		<h3><strong>About</strong></h3>
+    		<div class="row">
+    			<div class="col-md-6" id="tool-about">
+    				<p id="about">
+    					Describe the LinkedOmics project as a whole.
+    					Describe the tool in as much detail as you can.
+    					How may one use the tool? How is it useful?
+    					Describe the Science behind the project and what the different types of charts represent.
+    					Describe the methods, programming languages, libraries, etc you used.
+    				</p>
+    			</div>
+    				
+    			<div class="col-md-4" id="tool-about">
+    				<p id="about">
+    					Describe the creator(s) of the tool.
+	    				Mention your school, major, future career goals, etc.
+	    				Include picture and contact information.
+    				</p>
+    			</div>
+    		</div>
+
+    		</div>
+	        <% include templates/footer.ejs %>
+    	</center>
+    </body>
+</html>

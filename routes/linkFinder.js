@@ -1,0 +1,17 @@
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  	res.render('linkFinder', {
+  		title: 'Visiomics | LinkFinder'
+  	});
+});
+
+router.post('/linkFinder', function(req, res) {
+	res.render('/examples/continuous.html', {
+		title: 'Visiomics | LinkFinder'
+	});
+});
+
+module.exports = router;

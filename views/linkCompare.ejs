@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+        <script type="text/javascript" src="../javascripts/main.js"></script>
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    </head>
+    <body>
+        <center>
+            <% include templates/header.ejs %>
+            <h3><strong>LinkCompare</strong></h3>
+
+            <p>
+                Select your parameters and run.
+                Also describe the format of the data you're expecting
+            </p>
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <div class="run">
+                            <form action="">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">Select Function</label>
+                                    <div class="select col-md-3">
+                                        <select name="function" class="form-control show-tick">
+                                            <option>LinkCompare</option>
+                                            <option>LinkFinder</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">Select Data Type</label>
+                                    <div class="select col-md-3">
+                                        <select name="data-type" class="form-control">
+                                            <option>Heatmap</option>
+                                            <option>Scatterplot</option>
+                                            <option>Venn Diagram</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">Select First Input File</label>
+                                    <div class="select col-md-1">
+                                        <span class="btn btn-file btn-default">
+                                            Choose File
+                                            <input type="file" name="file1">
+                                        </span>
+                                    </div>
+                                    <label id="chosen-file1" class="col-md-4 control-label chosen">No Chosen file</label>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label">Select Second Input File</label>
+                                    <div class="select col-md-1">
+                                        <span class="btn btn-file btn-default">
+                                            Choose File
+                                            <input type="file" name="file2">
+                                        </span>
+                                    </div>
+                                    <label id="chosen-file2" class="col-md-4 control-label chosen">No Chosen file</label>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-xs-3 control-label"></label>
+                                    <button class="btn btn-primary col-md-1" type="submit" id="buttonForModal" data-target="#myModal">
+                                        Run
+                                    </button>
+                                </div>
+                        </form>
+
+                        <script type="text/javascript">
+
+                            $(document).on('change', '.btn-file :file', function() {
+                                var input = $(this),
+                                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                                    label = input.val().replace(/\\/g, '/').replace(/.*\//, ''),
+                                    chosen = document.getElementById("chosen-" + this.name);
+                                input.trigger('fileselect', [numFiles, label]);
+                                chosen.innerHTML = label;
+                            });
+                        </script>   
+                    </div>
+            </div>
+
+            </div>
+            <% include templates/footer.ejs %>
+        </center>
+    </body>
+</html>
