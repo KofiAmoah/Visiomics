@@ -22,12 +22,12 @@ d3.selection.prototype.moveToFront = function(){
  * Reads and checks for errors the data supplied in the form and then graphs it.
  */ 
 
-function getInputDataAndDrawKM(){
+function getInputDataAndDrawKM(fileName){
     // Parameters.
     var id = "#viz", width = 600, height = 470, margin = 50; 
 
     //Load data and draw the Kaplan Meier plot.
-    var inputData = getInputData();
+    var inputData = getInputData(fileName);;
     console.log(inputData);
     if (typeof(inputData) == "string"){
         // We've got an error message. The user supplied incorrectly formatted data.
@@ -108,43 +108,34 @@ function getInputDataAndDrawKM(){
  *  * "ciType": "ordinary", "log", "loglog" or "none".
  *  * "z":      The z-score to use for the confidence intervals, e.g. 1.96.
  */ 
-var fileName = "linkFinder_survival.txt";
 var times = new Array();
 var events = new Array();
 var groups = new Array();
 var ciType = "ordinary";
 var z = 1.3 //Approximately 90% confidence
 
-function readFile(fileName) {
+function getInputData(fileName){
 	d3.tsv(fileName, function(data) {
-    	var keys = d3.keys(data[0]);
-    	var time = keys[1];
-    	var evnt = keys[2];
-    	var group = keys[3];
+        var keys = d3.keys(data[0]);
+        var time = keys[1];
+        var evnt = keys[2];
+        var group = keys[3];
 
-    	data.forEach(function(d) {
-    		d[time] = +d[time];
+        data.forEach(function(d) {
+            d[time] = +d[time];
 
-    		times.push(d[time]);
-    		events.push(d[evnt] == 1);
-    		groups.push(d[group]);
-    	});
-	});
-}
-
-function getInputData(){
-	jQuery.ajax({
-		async: false
-	});
-	readFile(fileName);  
-	console.log(times);
-	return {
-		"times" : times,
+            times.push(d[time]);
+            events.push(d[evnt] == 1);
+            groups.push(d[group]);
+        });
+    });
+    return {
+        "times" : times,
         "events": events, 
         "groups": groups,
         "ciType": ciType,
         "z"     : z
-	};
+    };
 };
 
 /**
@@ -245,5 +236,3 @@ function stepFnData(x, y){
     }
     return {"x": stepx, "y": stepy};
 }
-
-getInputDataAndDrawKM();

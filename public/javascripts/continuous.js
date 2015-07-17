@@ -1,5 +1,7 @@
-var width = window.innerWidth * 0.4;
-var height = window.innerHeight * 0.4;
+function createScatter(filePath) {
+
+var width = window.innerWidth * 0.5;
+var height = window.innerHeight * 0.5;
 var margin = {left: 0.1 * width,
     bottom: 0.1 * height,
     right: 0.1 * width,
@@ -14,7 +16,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 //Leaving a margin for the title and y-axis labels
-var svgContainer = d3.select('body').append('svg')
+var svgContainer = d3.select('#viz').append('svg')
     .attr("height", height + margin.bottom + margin.top)
     .attr("width", width + margin.left + margin.right)
   .append('g')
@@ -27,7 +29,7 @@ var gene2 = "";
 var analysisID = -1;
 
 //Loading data file and plotting the dots
-d3.tsv("/data/linkFinder_continuous.txt", function(data) {
+d3.tsv(filePath, function(data) {
     var keys = d3.keys(data[0]);
     var IDs = keys[0];
     var xValues = keys[1]
@@ -75,7 +77,7 @@ d3.tsv("/data/linkFinder_continuous.txt", function(data) {
     svgContainer.append("text")
         .attr('x', width/2)
         .attr('y', -(margin.top/2))
-        .text("Search Attribute: Continuous")
+        .text(xValues + " vs " + yValues + ": Continuous")
         .style("text-decoration", "underline")
         .style("font-weight", "bolder")
         .style("text-anchor", "middle");
@@ -121,21 +123,17 @@ d3.tsv("/data/linkFinder_continuous.txt", function(data) {
     var meanX = d3.mean(data, function(d) {
         return d[xValues];
     });
-    console.log("meanX = " + meanX);
     var meanY = d3.mean(data, function(d) {
         return d[yValues];
     });
-    console.log("meanY = " + meanY);
 
     //Standard deviation of x and y values
     var stanDevX = d3.deviation(data, function(d) {
         return d[xValues];
     });
-    console.log("stanDevX = " + stanDevX);
     var stanDevY = d3.deviation(data, function(d) {
         return d[yValues];
     });
-    console.log("stanDevY = " + stanDevY);
 
     //Correlation...Looked up this formula on wikiHow
     /*
@@ -150,10 +148,8 @@ d3.tsv("/data/linkFinder_continuous.txt", function(data) {
     var correlation = (1 / (data.length - 1)) * d3.sum(data, function(d) {
         return ((d[xValues] - meanX) / stanDevX) * ((d[yValues] - meanY) / stanDevY);
     });
-    console.log("correlation = " + correlation);
 
     var slope = correlation * (stanDevX / stanDevY);
-    console.log("slope = " + slope);
     var yIntercept = meanY - (slope * meanX);
 
     //Let x1 and x2 be the smallest and largest x-values in the dataset respectively
@@ -196,3 +192,5 @@ d3.tsv("/data/linkFinder_continuous.txt", function(data) {
         //.style("text-anchor", "end")
         .text("Pearson Correlation: " + d3.round(correlation, 4));
 });
+
+};

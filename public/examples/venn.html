@@ -1,0 +1,196 @@
+<html>
+<head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+  <meta charset="utf-8">
+  <title>TestBed</title>
+</head>
+<body>
+<style>
+div.tooltip {
+  position: absolute;           
+  text-align: center;           
+  width: 400px;                  
+  height: auto;                 
+  padding: 2px;             
+  font: 10px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;   
+  overflow: auto;
+  white-space: normal !important;
+
+    
+
+  .dot {
+  stroke: #000;
+}      
+}
+</style>
+
+  <script>
+  
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+    var tooltip2 = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+    var tooltip3 = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+;
+  queue()
+  .defer(d3.text, 'braf_sig.txt')
+  .defer(d3.text, 'kras_sig.txt')
+  .await(function(error,file1,file2){
+    
+    var f1 = file1.split("\n");
+    var f2 = file2.split("\n");
+    var inter = new Array();
+    var Gene1= new Array();
+    var Gene2= new Array();
+
+    for(var i=0, l=file1.split("\n").length; i < l; i++){
+    if(file2.split("\n").indexOf(file1.split("\n")[i]) > -1){
+      inter.push(file1.split("\n")[i]);
+var section= inter.join("\n")
+};
+    }
+    for(var i=0, l=file1.split("\n").length; i < l; i++){
+    if(inter.indexOf(file1.split("\n")[i]) == -1){
+      Gene1.push(file1.split("\n")[i]);
+};
+    }
+   for(var i=0, l=file2.split("\n").length; i < l; i++){
+    if(inter.indexOf(file2.split("\n")[i]) == -1){
+      Gene2.push(file2.split("\n")[i]);
+var section= inter.join("\n")
+var Group1= Gene1.join("\n")
+var Group2= Gene2.join("\n")
+    
+   
+};
+    }
+
+   
+  console.log("inter = " + inter); 
+   console.log("Gene1 = " + Gene1);
+    console.log("Gene2 = " + Gene2);
+  console.log(inter.length)
+  console.log(file1.length)
+  console.log(file2.length)
+
+
+ 
+var w = 960,
+    h = 500;
+ 
+var svg = d3.select("body").append("svg")
+    .attr("width", w)
+    .attr("height", h);
+ 
+svg.append("svg:circle")
+    .attr("cx", 350)
+    .attr("cy", 250)
+    .attr("r", (file1.split("\n").length)/2)
+    .style("fill", "brown")
+    .style("fill-opacity", ".5");
+ 
+svg.append("svg:circle")
+    .attr("cx", 600)
+    .attr("cy", 250)
+    .attr("r", (file2.split("\n").length)/2)
+    .style("fill", "steelblue")
+    .style("fill-opacity", ".5");
+
+
+ 
+var circle = svg.append("circle")
+.attr("cx", 350)
+.attr("cy", 250)
+.attr("r", (file1.split("\n").length)/2)
+.style("opacity", 0)
+
+
+      svg.append("text")
+      .attr("x",350)
+      .attr("y", 250)
+      .text(Group1.split("\n").length)
+      .on("mouseover", function(d) {
+          tooltip.transition()
+               .duration(200)
+               .style("opacity", .9);
+          tooltip.html(Group1)
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px")
+      })
+      .on("click", function(d) {
+          tooltip.transition()
+               .duration(300)
+               .style("opacity", 0);
+
+             });
+
+      
+
+var circle2 = svg.append("circle")
+.attr("cx", 600)
+.attr("cy", 250)
+.attr("r",(file2.split("\n").length)/2)
+.style("opacity",0)
+
+
+svg.append("text")
+      .attr("x",600)
+      .attr("y", 250)
+      .text(Group2.split("\n").length)
+      .on("mouseover", function(d) {
+          tooltip2.transition()
+               .duration(200)
+               .style("opacity", .9);
+          tooltip2.html(Group2)
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px")
+      })
+      .on("click", function(d) {
+          tooltip2.transition()
+               .duration(300)
+               .style("opacity", 0);
+
+             });
+
+var intersection = svg.append("circle")
+.attr("cx", ((350+(file1.split("\n").length/2))/2)+((600-(file2.split("\n").length/2))/2))
+.attr("cy", 250)
+.attr("r", 70)
+.style("opacity", 0)
+
+svg.append("text")
+      .attr("x",((350+(file1.split("\n").length/2))/2)+((600-(file2.split("\n").length/2))/2))
+      .attr("y", 250)
+      .text(section.split("\n").length)
+      .on("mouseover", function(d) {
+          tooltip3.transition()
+               .duration(200)
+               .style("opacity", .9);
+          tooltip3.html(section)
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px")
+      })
+      .on("click", function(d) {
+          tooltip3.transition()
+               .duration(300)
+               .style("opacity", 0);
+
+             });
+  });
+
+
+    </script>
+
+</body>
+</html>

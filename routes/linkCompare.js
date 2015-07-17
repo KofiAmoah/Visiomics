@@ -8,4 +8,8 @@ router.get('/', function(req, res, next) {
   	});
 });
 
+router.post('/linkCompare', function(req, res) {
+	res.sendFile('/examples/continuous.html')
+});
+
 module.exports = router;

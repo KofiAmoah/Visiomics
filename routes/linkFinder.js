@@ -8,10 +8,4 @@ router.get('/', function(req, res, next) {
   	});
 });
 
-router.post('/linkFinder', function(req, res) {
-	res.render('/examples/continuous.html', {
-		title: 'Visiomics | LinkFinder'
-	});
-});
-
 module.exports = router;

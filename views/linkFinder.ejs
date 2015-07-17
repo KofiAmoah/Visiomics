@@ -7,8 +7,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-        <script type="text/javascript" src="/javascripts/main.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+        <script type="text/javascript" src="/javascripts/arrayUtils.js"></script>
+        <script type="text/javascript" src="/javascripts/kaplanMeier.js"></script>
         <script type="text/javascript" src="/javascripts/continuous.js"></script>
+        <script type="text/javascript" src="/javascripts/binary.js"></script>
+        <script type="text/javascript" src="/javascripts/survival.js"></script>
+        <script type="text/javascript" src="/javascripts/main.js"></script>
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
     </head>
     <body>
@@ -22,24 +29,15 @@
                 <div class="col-md-3"></div>
                     <div class="col-md-9">
                         <div class="run">
-                            <form>
-                                <div class="form-group row">
-                                    <label class="col-xs-3 control-label">Select Function</label>
-                                    <div  class="select col-md-3">
-                                        <select name="function" class="form-control">
-                                            <option>LinkCompare</option>
-                                            <option>LinkFinder</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <form method="get" name="form">
 
                                 <div class="form-group row">
                                     <label class="col-xs-3 control-label">Select Data Type</label>
                                     <div class="select col-md-3">
-                                        <select name="data-type" class="form-control">
-                                            <option>Binary</option>
-                                            <option>Continuous</option>
-                                            <option>Survival</option>
+                                        <select name="data-type" class="form-control" id="selectFunction">
+                                            <option value="binary">Binary</option>
+                                            <option value="continuous">Continuous</option>
+                                            <option value="survival">Survival</option>
                                         </select>
                                     </div>
                                 </div>
@@ -49,17 +47,21 @@
                                     <div class="select col-md-1">
                                         <span class="btn btn-file btn-default">
                                             Choose File
-                                            <input name="data-file" type="file">
+                                            <input name="data-file" type="file"  id="fileInput" required>
                                         </span>
                                     </div>
-                                    <label id="chosen-file" class="col-md-3 control-label chosen">No Chosen file</label>
+                                    <label id="chosen-file" class="col-md-3 control-label chosen">No file chosen</label>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xs-3 control-label"></label>
-                                    <button class="btn btn-primary col-md-1" type="submit" id="buttonForModal">Run</button>
+                                    <button class="btn btn-primary col-md-1" id="runButton">Run</button>
                                 </div>
                         </form>
+
+                        <div id="viz" class="col-md-7">
+                            
+                        </div>
 
                         <script type="text/javascript">
 
