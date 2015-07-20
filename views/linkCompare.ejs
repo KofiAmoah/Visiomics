@@ -4,6 +4,7 @@
         <title><%= title %></title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="http://d3js.org/queue.v1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
@@ -16,6 +17,7 @@
         <script type="text/javascript" src="/javascripts/binary.js"></script>
         <script type="text/javascript" src="/javascripts/survival.js"></script>
         <script type="text/javascript" src="/javascripts/scatterplot.js"></script>
+        <script type="text/javascript" src="/javascripts/venn.js"></script>
         <script type="text/javascript" src="/javascripts/main.js"></script>
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
     </head>
@@ -61,7 +63,7 @@
                                     <div class="select col-md-1">
                                         <span class="btn btn-file btn-default">
                                             Choose File
-                                            <input type="file" name="file2" id="fileInput">
+                                            <input type="file" name="file2" id="fileInput2">
                                         </span>
                                     </div>
                                     <label id="chosen-file2" class="col-md-4 control-label chosen">No Chosen file</label>
@@ -76,6 +78,9 @@
                         </form>
 
                         <div id="viz" class="col-md-7">
+
+                        </div>
+
 
                         <script type="text/javascript">
                             var selectFunction = document.getElementById("selectFunction");
@@ -97,7 +102,6 @@
                             });
                         </script>   
                     </div>
-            </div>
 
             </div>
             <% include templates/footer.ejs %>

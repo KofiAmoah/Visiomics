@@ -112,8 +112,12 @@ ul {
 }
 
 #lab-logo {
+  border: 0px;
+  margin:0px;
 	padding-top: 6px;
-	padding-bottom: 32px;
+	padding-bottom: 50px;
+	padding-left: 35px;
+	padding-right: 35px;
 }
 
 #title {
@@ -125,7 +129,10 @@ ul {
 }
 
 #vandy-logo {
-	padding-top: 5px;
+  border: 0px;
+  margin:0px;
+	padding-top: 6px;
+	padding-bottom: 20px;
 }
 
 .indexwell {

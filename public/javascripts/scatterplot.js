@@ -34,7 +34,7 @@ var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
     // load data
-d3.tsv("/data/linkCompare_scatterplot.txt", function(error, data) {
+d3.tsv(filePath, function(error, data) {
   //set variable. Replace spaces with commas
   
   //var commas = data.replace(/ /g, ",");
