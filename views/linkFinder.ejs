@@ -21,9 +21,17 @@
     <body>
         <center>
             <% include templates/header.ejs %>
-            <h3><strong>LinkFinder</strong></h3>
+            <!--
+                The name of this feature had to be changed to LinkViz because this program is not doing the link finding. 
+                LinkFinder is available in LinkedOmics, but this program only visualizes the results of the LinkFinder
+            -->
+            <h3><strong>LinkViz</strong></h3>
 
             <p>Select your parameters and run</p>
+
+            <div>
+                <img src="" id="dataImg" alt="What your data files should look like">
+            </div>
 
             <div class="row">
                 <div class="col-md-3"></div>
@@ -60,7 +68,7 @@
                         </form>
 
                         <div id="viz" class="col-md-7">
-                        
+
                         </div>
                             
                         </div>

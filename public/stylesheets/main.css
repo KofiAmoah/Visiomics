@@ -39,8 +39,19 @@ ul {
 
 #about {
   font-size: 12pt;
-  padding-right: 30px;
+  padding-right: 10px;
   padding-left: 30px;
+  text-align: block;
+  margin-bottom: 30px;
+}
+
+#creator {
+  padding-top: 10px;
+  padding-left: 0px;
+}
+
+#dataImg {
+  margin: 20px
 }
 
 #jumbo {
@@ -54,9 +65,9 @@ ul {
 }
 
 #description {
-	margin: 25px;
+	margin: 35px;
 	padding: 45px;
-	font-size: 11pt;
+	font-size: 13pt;
 }
 
 #content {
@@ -111,6 +122,11 @@ ul {
 	font-size: 9pt;
 }
 
+img.people{
+  width: 95%;
+  height: 95%;
+}
+
 #lab-logo {
   border: 0px;
   margin:0px;
@@ -120,12 +136,17 @@ ul {
 	padding-right: 35px;
 }
 
+#subheading {
+  text-align: left;
+}
+
 #title {
   text-decoration:none;
 }
 
 #tool-about{
-  margin: 10px;
+  margin: 5px;
+  margin-left: 30px;
 }
 
 #vandy-logo {
@@ -133,6 +154,11 @@ ul {
   margin:0px;
 	padding-top: 6px;
 	padding-bottom: 20px;
+}
+
+#verticalLine {
+    display:inline-block;
+    border-left: solid black;
 }
 
 .indexwell {
