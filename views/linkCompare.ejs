@@ -26,10 +26,19 @@
             <% include templates/header.ejs %>
             <h3><strong>LinkCompare</strong></h3>
 
-            <p>
-                Select your parameters and run.
-                Also describe the format of the data you're expecting
-            </p>
+            <div class="row">
+                <div class="col-xs-3" id="idle">
+                    <!-- This idle div is only used to pad the text -->
+                </div>
+                <div class="col-xs-6">
+                    <p id="prompt">
+                        This functionality is used to visualize the results of association analyses by the LinkCompare tool in the LinkedOmics suite. Select your desired funtionality, upload your data files and run Visiomics, but first make sure your data files look like the example in the image below.
+                    </p>
+                </div>
+                <div class="col-xs-3" id="idle">
+                    <!-- This idle div is only used to pad the text -->
+                </div>
+            </div>
 
             <div>
                 <img src="" id="dataImg" alt="What your data files should look like">
