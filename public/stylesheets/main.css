@@ -108,6 +108,11 @@ ul {
 	background-color: #000000
 }
 
+#central-dogma {
+  width: 95%;
+  height:95%;
+}
+
 .chosen {
   font-size: 10pt;
 }

@@ -16,7 +16,7 @@ window.onload = function() {
 		var fx = createBoxPlot;
 		dataImg.src = "/images/binary_data.png";
 	} else{
-		dataImg.src = "/images/braf_sig_data.png";
+		dataImg.src = "/images/venn_data.png";
 		var fx = createVenn;
 	}
 	$('#selectFunction').on('change', function() {
@@ -28,16 +28,17 @@ window.onload = function() {
 			fx = createBoxPlot;
 		} else if (selectFunction.options[selectFunction.selectedIndex].value == "survival") {
 			dataImg.src = "/images/survival_data.png";
-			fx = getInputDataAndDrawKM;
+			fx = alert("Function not added yet");
+			//fx = getInputDataAndDrawKM;
 		} else if (selectFunction.options[selectFunction.selectedIndex].value == "scatterplot") {
 			dataImg.src = "/images/scatterplot_data.png";
 			fx = scatter2;
 		} else if (selectFunction.options[selectFunction.selectedIndex].value == "venn") {
-			dataImg.src = "/images/kras_sig_data.png";
+			dataImg.src = "/images/venn_data.png";
 			fx = createVenn;
 		} else if (selectFunction.options[selectFunction.selectedIndex].value == "heatmap") {
 			dataImg.src = "/images/heatmap_data.png";
-			fx = console.log;
+			fx = alert("Function not added yet");
 		}
 	});
 	switch(selectFunction.options[selectFunction.selectedIndex].value) {
