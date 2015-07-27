@@ -11,6 +11,7 @@
   color: #fff;
   border-radius: 8px;
   pointer-events: none;
+  z-index: 2000 !important;
 }
 
 div.tooltip {
@@ -26,7 +27,9 @@ div.tooltip {
   pointer-events: none;
   pointer-events: none;   
   overflow: auto;
-  white-space: normal !important        
+  white-space: normal !important   
+  z-index: 2000 !important;     
 }
+
 
 

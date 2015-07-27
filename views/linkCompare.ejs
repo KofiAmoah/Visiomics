@@ -86,14 +86,24 @@
 
                                 <div class="form-group row">
                                     <label class="col-xs-3 control-label"></label>
-                                    <button class="btn btn-primary col-md-1" id="runButton">
+                                    <button type="button" class="btn btn-primary col-md-1" id="runButton" data-toggle="modal" data-target="#myModal">
                                         Run
                                     </button>
                                 </div>
                         </form>
 
-                        <div id="viz" class="col-md-7">
-
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>Visiomics</h4>
+                              </div>
+                              <div class="modal-body" id="viz">
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
 

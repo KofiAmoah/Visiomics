@@ -62,5 +62,10 @@ if (window.location.pathname == "/linkCompare" || window.location.pathname == "/
 					fx(url);
 				});
 		};
+
+		//Remove svg from modal when modal is hidden...so that only 1 graph shows at a time
+		$('#myModal').on('hidden.bs.modal', function () {
+			$("#viz").empty();
+		});
 	};
 };

@@ -54,12 +54,12 @@
                             <form method="get" name="form">
 
                                 <div class="form-group row">
-                                    <label class="col-xs-3 control-label">Select Data Type</label>
+                                    <label class="col-xs-3 control-label">Select Chart Type</label>
                                     <div class="select col-md-3">
                                         <select name="data-type" class="form-control" id="selectFunction">
-                                            <option value="binary">Binary</option>
-                                            <option value="continuous">Continuous</option>
-                                            <option value="survival">Survival</option>
+                                            <option value="binary">Box Plot</option>
+                                            <option value="continuous">Scatterplot</option>
+                                            <option value="survival">Survival Curve</option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,12 +77,22 @@
 
                                 <div class="form-group row">
                                     <label class="col-xs-3 control-label"></label>
-                                    <button class="btn btn-primary col-md-1" id="runButton">Run</button>
+                                    <button type="button" class="btn btn-primary col-md-1" id="runButton" data-toggle="modal" data-target="#myModal">Run</button>
                                 </div>
                         </form>
 
-                        <div id="viz" class="col-md-7">
-
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>Visiomics</h4>
+                              </div>
+                              <div class="modal-body" id="viz">
+                              </div>
+                            </div>
+                          </div>
                         </div>
                             
                         </div>
