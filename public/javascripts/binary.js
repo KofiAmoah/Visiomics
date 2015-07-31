@@ -168,29 +168,29 @@ function createBoxPlot(filePath) {
 	        .attr("class", "d3-tip")
 	        .html(function() {
 	            return "Median: " + d3.median(zeros, function(d) {
-	            	return d[measure];
+	            	return d3.round(d[measure], 2);
 	            })
-	            + "<br>Upper Quartile: " + zeros[q3Position(zeros)][measure]
-	            + "<br>Lower Quartile: " + zeros[q1Position(zeros)][measure]
-	            + "<br>Interquartile Range: " + iqr(zeros)
+	            + "<br>Upper Quartile: " + d3.round(zeros[q3Position(zeros)][measure], 2)
+	            + "<br>Lower Quartile: " + d3.round(zeros[q1Position(zeros)][measure], 2)
+	            + "<br>Interquartile Range: " + d3.round(iqr(zeros), 2)
 	        });
 
 	    var onesTip = d3.tip()
 	        .attr("class", "d3-tip")
 	        .html(function() {
 	            return "Median: " + d3.median(ones, function(d) {
-	            	return d[measure];
+	            	return d3.round(d[measure], 2);
 	            })
-	            + "<br>Upper Quartile: " + ones[q3Position(ones)][measure]
-	            + "<br>Lower Quartile: " + ones[q1Position(ones)][measure]
-	            + "<br>Interquartile Range: " + iqr(ones)
+	            + "<br>Upper Quartile: " + d3.round(ones[q3Position(ones)][measure], 2)
+	            + "<br>Lower Quartile: " + d3.round(ones[q1Position(ones)][measure], 2)
+	            + "<br>Interquartile Range: " + d3.round(iqr(ones), 2)
 	        });
 
 	    var sampleTip = d3.tip()
 	    	.attr("class", "d3-tip")
 	    	.html(function(d) {
-	            return d["Sample"] + "<br>KRAS_Mutation: " + d3.round(d[group], 3) 
-	                + "<br>RAB10_Protein_Exp: " + d3.round(d[measure], 3);
+	            return d["Sample"] + "<br>KRAS_Mutation: " + d3.round(d[group], 2) 
+	                + "<br>RAB10_Protein_Exp: " + d3.round(d[measure], 2);
 	             });
 
 	    svgContainer.call(zerosTip);

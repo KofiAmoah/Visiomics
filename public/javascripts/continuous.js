@@ -67,8 +67,8 @@ d3.tsv(filePath, function(data) {
     var tip = d3.tip()
         .attr("class", "d3-tip")
         .html(function(d) {
-            return d[IDs] + "<br>" + xValues + ": " + d3.round(d[xValues], 3) 
-                + "<br>" + yValues + ": " + d3.round(d[yValues], 3);
+            return d[IDs] + "<br>" + xValues + ": " + d3.round(d[xValues], 2) 
+                + "<br>" + yValues + ": " + d3.round(d[yValues], 2);
         });
 
     svgContainer.call(tip);

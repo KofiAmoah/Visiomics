@@ -31,7 +31,7 @@ var svg = d3.select("#viz").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     // hover over tooltip
 var tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "scatter-tooltip")
     .style("opacity", 0);
     // load data
 d3.tsv(filePath, function(error, data) {

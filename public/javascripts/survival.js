@@ -22,16 +22,16 @@ d3.selection.prototype.moveToFront = function(){
  * Reads and checks for errors the data supplied in the form and then graphs it.
  */ 
 
-function getInputDataAndDrawKM(fileName){
+function getInputDataAndDrawKM(){
     // Parameters.
     var id = "#viz", width = 600, height = 470, margin = 50; 
 
     //Load data and draw the Kaplan Meier plot.
-    var inputData = getInputData(fileName);;
-    console.log(inputData);
+    //var inputData = getInputData(fileName);;
+    //console.log(inputData);
     if (typeof(inputData) == "string"){
         // We've got an error message. The user supplied incorrectly formatted data.
-        message(inputData);
+        //message(inputData);
     }
     else{ 
         if (d3.select("svg") != false){
@@ -79,7 +79,7 @@ function getInputDataAndDrawKM(fileName){
          .attr("x", -160)
          .attr("dy", ".75em")
          .attr("transform", "rotate(-90)")
-         .text("Probability");
+         .text("Survival Probability");
     
         // Draw the survival estimates and confidence intervals. The confidence intervals must be drawn first, otherwise
         // they will obscure the lines, preventing the mouseover effects defined on the survival estimates (the lines). 
@@ -108,34 +108,44 @@ function getInputDataAndDrawKM(fileName){
  *  * "ciType": "ordinary", "log", "loglog" or "none".
  *  * "z":      The z-score to use for the confidence intervals, e.g. 1.96.
  */ 
-var times = new Array();
-var events = new Array();
-var groups = new Array();
-var ciType = "ordinary";
-var z = 1.3 //Approximately 90% confidence
 
 function getInputData(fileName){
-	d3.tsv(fileName, function(data) {
-        var keys = d3.keys(data[0]);
-        var time = keys[1];
-        var evnt = keys[2];
-        var group = keys[3];
+    var times = new Array();
+    var events = new Array();
+    var groups = new Array();
+    var ciType = "ordinary";
+    var z = 1.3 //Approximately 90% confidence
 
-        data.forEach(function(d) {
-            d[time] = +d[time];
+    $.ajax({
+        url: window.location.href,
+        //data: fileName,
+        async: false,
+        success: function(){
+            d3.tsv(fileName, function(data) {
+                var keys = d3.keys(data[0]);
+                var time = keys[1];
+                var evnt = keys[2];
+                var group = keys[3];
 
-            times.push(d[time]);
-            events.push(d[evnt] == 1);
-            groups.push(d[group]);
-        });
-    });
-    return {
-        "times" : times,
-        "events": events, 
-        "groups": groups,
-        "ciType": ciType,
-        "z"     : z
-    };
+                data.forEach(function(d) {
+                    d[time] = +d[time];
+
+                    times.push(d[time]);
+                    events.push(d[evnt] == 1);
+                    groups.push(d[group]);
+                });
+                inputData = {
+                    "times": times,
+                    "events": events,
+                    "groups": groups,
+                    "ciType": ciType,
+                    "z": z
+                };
+
+                getInputDataAndDrawKM();
+            });
+        }
+    });	
 };
 
 /**
@@ -187,34 +197,34 @@ function drawKM(g, times, events, xTransform, yTransform, groupNum, groupName){
 			d3.selectAll(".survcircle" + groupNum).classed("active", true).moveToFront();
 		}
         d3.selectAll(".survarea"   + groupNum).classed("active", true);
-        message("Highlighted Group:  " + groupName);
+        //message("Highlighted Group:  " + groupName);
     }
     var dehighlight_fn = function(){
         d3.selectAll(".survline"   + groupNum).classed("active", false);
         d3.selectAll(".survcircle" + groupNum).classed("active", false);
         d3.selectAll(".survarea"   + groupNum).classed("active", false);
-        clearMessage();
+        //clearMessage();
     }
     
     // Draw the lines.
     g.append("path")
-     .attr("class", "survline survline" + groupNum)
-     .attr("d", lineFunction(arrayOf2DimArrays(kmStep["x"], kmStep["y"], xTransform, yTransform)))
-     .on("mouseover", highlight_fn) 
-     .on("mouseout",  dehighlight_fn);
+        .attr("class", "survline survline" + groupNum)
+        .attr("d", lineFunction(arrayOf2DimArrays(kmStep["x"], kmStep["y"], xTransform, yTransform)))
+        .on("mouseover", highlight_fn) 
+        .on("mouseout",  dehighlight_fn);
 	 
     // Draw circles to show censoring.    
     var hasCensoring = compare(km.nCensored, "gt", 0)
     g.selectAll("circle")
-     .data(arrayOf2DimArrays(subset(km.time, hasCensoring), subset(km.kaplanMeier, hasCensoring), xTransform, yTransform))
-     .enter()
-     .append("circle")
-     .attr("class", "survcircle survcircle" + groupNum)
-     .attr("cx", function(d){return d[0];})
-     .attr("cy", function(d){return d[1];})
-     .attr("r", 3)     
-     .on("mouseover", highlight_fn)
-     .on("mouseout",  dehighlight_fn);
+        .data(arrayOf2DimArrays(subset(km.time, hasCensoring), subset(km.kaplanMeier, hasCensoring), xTransform, yTransform))
+        .enter()
+      .append("circle")
+        .attr("class", "survcircle survcircle" + groupNum)
+        .attr("cx", function(d){return d[0];})
+        .attr("cy", function(d){return d[1];})
+        .attr("r", 3)     
+        .on("mouseover", highlight_fn)
+        .on("mouseout",  dehighlight_fn);
 }
 
 /**
@@ -235,4 +245,4 @@ function stepFnData(x, y){
         }
     }
     return {"x": stepx, "y": stepy};
-}
+};

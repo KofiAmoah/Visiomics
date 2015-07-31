@@ -29,8 +29,8 @@ if (window.location.pathname == "/linkCompare" || window.location.pathname == "/
 				fx = createBoxPlot;
 			} else if (selectFunction.options[selectFunction.selectedIndex].value == "survival") {
 				dataImg.src = "/images/survival_data.png";
-				fx = alert("Function not added yet");
-				//fx = getInputDataAndDrawKM;
+				//fx = alert("Function not added yet");
+				fx = getInputData;
 			} else if (selectFunction.options[selectFunction.selectedIndex].value == "scatterplot") {
 				dataImg.src = "/images/scatterplot_data.png";
 				fx = scatter2;

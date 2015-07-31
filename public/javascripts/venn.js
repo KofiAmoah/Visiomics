@@ -1,14 +1,14 @@
 function createVenn (file1, file2) {
   var tooltip = d3.select("#viz").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "venn-tooltip")
     .style("opacity", 0);
 
     var tooltip2 = d3.select("#viz").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "venn-tooltip")
     .style("opacity", 0);
 
     var tooltip3 = d3.select("#viz").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "venn-tooltip")
     .style("opacity", 0);
 ;
   queue()
@@ -83,8 +83,8 @@ var circle = svg.append("circle")
                .duration(200)
                .style("opacity", .9);
           tooltip.html(Group1)
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
+               .attr("x",350)
+               .attr("y", 250)
       })
       .on("click", function(d) {
           tooltip.transition()
@@ -111,8 +111,8 @@ svg.append("text")
                .duration(200)
                .style("opacity", .9);
           tooltip2.html(Group2)
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
+               .attr("x",600)
+               .attr("y", 250)
       })
       .on("click", function(d) {
           tooltip2.transition()
@@ -136,8 +136,8 @@ svg.append("text")
                .duration(200)
                .style("opacity", .9);
           tooltip3.html(section)
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
+               .attr("x",((350+(file1.split("\n").length/2))/2)+((600-(file2.split("\n").length/2))/2))
+               .attr("y", 250)
       })
       .on("click", function(d) {
           tooltip3.transition()
