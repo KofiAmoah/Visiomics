@@ -1,0 +1,1 @@
+Kofi Amoah - Fisk University
